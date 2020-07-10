@@ -1,5 +1,6 @@
 package com.example.newyorktimesbooks.data.service
 
+import androidx.lifecycle.LiveData
 import com.example.newyorktimesbooks.BuildConfig
 import com.example.newyorktimesbooks.data.response.BookBodyResponse
 import retrofit2.http.GET
@@ -11,5 +12,5 @@ interface NYTServices {
     suspend fun getBooks(
         @Query("api-key") apiKey: String = BuildConfig.API_KEY,
         @Query("list") list: String = "hardcover-fiction"
-    ): List<BookBodyResponse>
+    ): LiveData<BookBodyResponse>
 }
