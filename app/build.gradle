@@ -32,6 +32,14 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
+    // Lifecycle ViewModel - LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // Retrofit - Moshi
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
     testImplementation "junit:junit:$junit_version"
 
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
