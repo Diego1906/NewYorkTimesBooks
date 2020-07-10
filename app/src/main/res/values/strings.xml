@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewYorkTimesBooks</string>
+    <string name="title">Books</string>
 </resources>
