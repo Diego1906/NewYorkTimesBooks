@@ -68,6 +68,9 @@ dependencies {
     // Koin for Android Architecture ViewModel
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     testImplementation "junit:junit:$junit_version"
 
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"

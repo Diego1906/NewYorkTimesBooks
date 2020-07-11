@@ -23,7 +23,7 @@ class ApiServiceImpl : ApiService {
             .build()
     }
 
-    override fun getService(): NYTServices {
+    override fun getInstance(): NYTServices {
         return retrofit.create(NYTServices::class.java)
     }
 }

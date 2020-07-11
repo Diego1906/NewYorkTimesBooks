@@ -10,12 +10,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
 
     private val _books = MutableLiveData<List<Book>>()
     val books
         get() = _books
+
+    private val _msg = MutableLiveData<String>()
+    val msg
+        get() = _msg
 
     fun getBooks() {
         viewModelScope.launch {
@@ -28,7 +33,16 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
                         }
                     }
                     _books.postValue(temp)
-                } catch (e: Throwable) {
+                } catch (throwable: AccessDeniedException) {
+                    Timber.e(throwable)
+
+                    // TODO: Mehorar a mensagem de erro: Utilizando strings resources
+                    _msg.postValue(throwable.message)
+                } catch (throwable: Throwable) {
+                    Timber.e(throwable)
+
+                    // TODO: Mehorar a mensagem de erro: Utilizando strings resources
+                    _msg.postValue(throwable.message)
                 }
             }
         }

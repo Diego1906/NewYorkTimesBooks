@@ -7,6 +7,7 @@ import com.example.newyorktimesbooks.R
 import com.example.newyorktimesbooks.data.model.Book
 import com.example.newyorktimesbooks.presentation.books.adapter.BooksAdapter
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
+import com.example.newyorktimesbooks.util.onShowToast
 import kotlinx.android.synthetic.main.activity_books.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,6 +22,10 @@ class BooksActivity : AppCompatActivity() {
 
         toolbarMain.title = getString(R.string.books_title)
         setSupportActionBar(toolbarMain)
+
+        viewModel.msg.observe(this, Observer {
+            it?.onShowToast(this)
+        })
 
         viewModel.books.observe(this, Observer {
             it?.let {
