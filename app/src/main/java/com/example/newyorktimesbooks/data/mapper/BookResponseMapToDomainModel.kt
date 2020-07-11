@@ -2,9 +2,10 @@ package com.example.newyorktimesbooks.data.mapper
 
 import com.example.newyorktimesbooks.data.model.Book
 import com.example.newyorktimesbooks.data.response.BookDetailsResponse
+import com.example.newyorktimesbooks.util.checkDataApi
 
 fun BookDetailsResponse.mapToDomain() = Book(
-    title = this.title,
-    description = this.description,
-    author = this.author
+    title = this.title.checkDataApi(),
+    description = this.description.checkDataApi(),
+    author = this.author.checkDataApi()
 )

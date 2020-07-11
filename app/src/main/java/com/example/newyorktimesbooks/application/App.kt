@@ -1,6 +1,7 @@
 package com.example.newyorktimesbooks.application
 
 import android.app.Application
+import android.content.Context
 import com.example.newyorktimesbooks.di.dataModule
 import com.example.newyorktimesbooks.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -19,6 +20,22 @@ class App : Application() {
             modules(viewModelModule, dataModule)
         }
 
+        setContext(applicationContext)
+
         Timber.plant(Timber.DebugTree())
+    }
+
+    companion object {
+        private lateinit var CONTEXT: Context
+
+        private fun setContext(context: Context) {
+            synchronized(App::class.java) {
+                if (!::CONTEXT.isInitialized) {
+                    CONTEXT = context
+                }
+            }
+        }
+
+        fun getContext() = CONTEXT
     }
 }

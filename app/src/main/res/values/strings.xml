@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">NewYorkTimesBooks</string>
 
+    <string name="unreported_information">Unreported information</string>
+
     <!-- Books Activity -->
     <string name="books_title">Books</string>
+
+    <!-- Books Details Activity -->
+    <string name="book_details_title_label">Title</string>
+    <string name="book_details_description_label">Description</string>
+    <string name="details_title">Details</string>
 </resources>

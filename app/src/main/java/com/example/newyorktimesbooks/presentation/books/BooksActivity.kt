@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.newyorktimesbooks.R
-import com.example.newyorktimesbooks.data.model.Book
 import com.example.newyorktimesbooks.presentation.books.adapter.BooksAdapter
+import com.example.newyorktimesbooks.presentation.books.adapter.OnclickListener
+import com.example.newyorktimesbooks.presentation.details.BookDetailsActivity
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
 import com.example.newyorktimesbooks.util.onShowToast
 import kotlinx.android.synthetic.main.activity_books.*
@@ -16,6 +17,12 @@ class BooksActivity : AppCompatActivity() {
 
     private val viewModel: BooksViewModel by viewModel()
 
+    private val adapterBooks: BooksAdapter by lazy {
+        BooksAdapter(OnclickListener { book ->
+            BookDetailsActivity.start(this, book)
+        })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
@@ -23,23 +30,23 @@ class BooksActivity : AppCompatActivity() {
         toolbarMain.title = getString(R.string.books_title)
         setSupportActionBar(toolbarMain)
 
+        initRecyclerView()
+
         viewModel.msg.observe(this, Observer {
             it?.onShowToast(this)
         })
-
         viewModel.books.observe(this, Observer {
             it?.let {
-                initRecyclerView(it)
+                adapterBooks.setList(it)
             }
         })
-
         viewModel.getBooks()
     }
 
-    private fun initRecyclerView(books: List<Book>) {
+    private fun initRecyclerView() {
         with(recyclerBooks) {
             setHasFixedSize(true)
-            adapter = BooksAdapter(books)
+            adapter = adapterBooks
         }
     }
 }

@@ -27,8 +27,8 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
             withContext(Dispatchers.IO) {
                 try {
                     val temp = mutableListOf<Book>()
-                    repository.getBooks().bookResults.map { result ->
-                        result.details.map { detail ->
+                    repository.getBooks().bookResults?.map { result ->
+                        result.details?.map { detail ->
                             temp.add(detail.mapToDomain())
                         }
                     }
