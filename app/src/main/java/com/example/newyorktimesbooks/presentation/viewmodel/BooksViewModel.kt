@@ -1,7 +1,6 @@
 package com.example.newyorktimesbooks.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newyorktimesbooks.data.mapper.mapToDomain
@@ -19,26 +18,21 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
         get() = _books
 
     fun getBooks() {
-        // _books.value = createFakeBooks()
-
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                Transformations.map(repository.getBooks()) { body ->
-                    body.bookResults.map { results ->
-                        _books.postValue(results.details.map { detail ->
-                            detail.mapToDomain()
-                        })
+                try {
+                    val temp = mutableListOf<Book>()
+                    repository.getBooks().bookResults.map { result ->
+                        result.details.map { detail ->
+                            temp.add(detail.mapToDomain())
+                        }
                     }
+                    _books.postValue(temp)
+                } catch (e: Throwable) {
                 }
             }
         }
     }
-
-    fun createFakeBooks() = listOf(
-        Book(title = "Kotlin em ação", description = "The best", author = "Demitriv"),
-        Book(title = "Kotlin", description = "New", author = "Desconhecido"),
-        Book(title = "Android com Kotlin", description = "Old Book", author = "Ricado Lecheta")
-    )
 
     override fun onCleared() {
         super.onCleared()
