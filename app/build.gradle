@@ -70,7 +70,7 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
-    
+
     testImplementation "junit:junit:$junit_version"
 
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"

@@ -42,7 +42,6 @@ class BooksAdapter(private val onClickListener: OnclickListener) :
         }
 
         companion object {
-
             fun from(parent: ViewGroup): BooksViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_book, parent, false)

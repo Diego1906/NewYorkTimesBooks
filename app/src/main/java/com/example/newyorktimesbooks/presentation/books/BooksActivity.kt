@@ -1,19 +1,19 @@
 package com.example.newyorktimesbooks.presentation.books
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.newyorktimesbooks.R
+import com.example.newyorktimesbooks.presentation.base.BaseActivity
 import com.example.newyorktimesbooks.presentation.books.adapter.BooksAdapter
 import com.example.newyorktimesbooks.presentation.books.adapter.OnclickListener
 import com.example.newyorktimesbooks.presentation.details.BookDetailsActivity
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
 import com.example.newyorktimesbooks.util.onShowToast
 import kotlinx.android.synthetic.main.activity_books.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BooksActivity : AppCompatActivity() {
+class BooksActivity : BaseActivity() {
 
     private val viewModel: BooksViewModel by viewModel()
 
@@ -27,8 +27,7 @@ class BooksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        toolbarMain.title = getString(R.string.books_title)
-        setSupportActionBar(toolbarMain)
+        setupToolbar(toolbarMain, R.string.books_title)
 
         initRecyclerView()
 

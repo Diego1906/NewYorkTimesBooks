@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.newyorktimesbooks.R
 import com.example.newyorktimesbooks.data.model.Book
+import com.example.newyorktimesbooks.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_book_details.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 
-class BookDetailsActivity : AppCompatActivity() {
+class BookDetailsActivity : BaseActivity() {
 
     private lateinit var book: Book
 
@@ -18,8 +18,9 @@ class BookDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        toolbarMain.title = getString(R.string.details_title)
-        setSupportActionBar(toolbarMain)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        setupToolbar(toolbarMain, R.string.book_details_title)
 
         book = savedInstanceState?.getParcelable(EXTRA_DETAIL) ?: run {
             intent.getParcelableExtra(EXTRA_DETAIL) as Book
@@ -39,9 +40,9 @@ class BookDetailsActivity : AppCompatActivity() {
 
         fun start(context: Context, book: Book) {
             context.startActivity(
-                Intent(context, BookDetailsActivity::class.java).apply {
-                    putExtra(EXTRA_DETAIL, book)
-                }
+                    Intent(context, BookDetailsActivity::class.java).apply {
+                        putExtra(EXTRA_DETAIL, book)
+                    }
             )
         }
     }

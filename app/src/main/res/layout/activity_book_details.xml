@@ -6,9 +6,7 @@
     android:orientation="vertical"
     tools:context=".presentation.details.BookDetailsActivity">
 
-    <include
-        android:id="@+id/toolbarDetail"
-        layout="@layout/toolbar" />
+    <include layout="@layout/include_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,32 +15,30 @@
         android:padding="@dimen/dp16">
 
         <TextView
+            style="@style/MyTextViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_details_title_label"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            android:text="@string/book_details_title_label" />
 
         <TextView
             android:id="@+id/txtTitleDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:layout_marginTop="@dimen/dp8"
             tools:text="Title the book" />
 
         <TextView
+            style="@style/MyTextViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp16"
-            android:text="@string/book_details_description_label"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/dp24"
+            android:text="@string/book_details_description_label" />
 
         <TextView
             android:id="@+id/txtTitleDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
+            android:layout_marginTop="@dimen/dp8"
             tools:text="Description the book" />
 
     </LinearLayout>
