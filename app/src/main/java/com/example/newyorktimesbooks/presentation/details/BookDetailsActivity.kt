@@ -18,9 +18,7 @@ class BookDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        setupToolbar(toolbarMain, R.string.book_details_title)
+        setupToolbar(toolbarMain, R.string.book_details_title, true)
 
         book = savedInstanceState?.getParcelable(EXTRA_DETAIL) ?: run {
             intent.getParcelableExtra(EXTRA_DETAIL) as Book
@@ -40,9 +38,9 @@ class BookDetailsActivity : BaseActivity() {
 
         fun start(context: Context, book: Book) {
             context.startActivity(
-                    Intent(context, BookDetailsActivity::class.java).apply {
-                        putExtra(EXTRA_DETAIL, book)
-                    }
+                Intent(context, BookDetailsActivity::class.java).apply {
+                    putExtra(EXTRA_DETAIL, book)
+                }
             )
         }
     }

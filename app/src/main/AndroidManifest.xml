@@ -14,20 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".presentation.books.BooksActivity">
+
+        <activity
+            android:name=".presentation.books.BooksActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".presentation.details.BookDetailsActivity"
-            android:parentActivityName=".presentation.books.BooksActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.books.BooksActivity" />
-        </activity>
+            android:parentActivityName=".presentation.books.BooksActivity" />
+
         <activity android:name=".presentation.base.BaseActivity" />
+
     </application>
 </manifest>
