@@ -10,7 +10,6 @@ import com.example.newyorktimesbooks.presentation.details.BookDetailsActivity
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
 import com.example.newyorktimesbooks.util.onShowToast
 import kotlinx.android.synthetic.main.activity_books.*
-import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BooksActivity : BaseActivity() {
@@ -27,7 +26,7 @@ class BooksActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        setupToolbar(toolbarMain, R.string.books_title)
+        setupToolbar(R.string.books_title)
 
         initRecyclerView()
 
@@ -39,7 +38,18 @@ class BooksActivity : BaseActivity() {
                 adapterBooks.setList(it)
             }
         })
-        viewModel.getBooks()
+
+        viewModel.viewFlipper.observe(this, Observer {
+            it?.let { flipper ->
+                viewFlipperBooks.displayedChild = flipper.first
+                flipper.second?.let { resId ->
+                    txtError.text = getString(resId)
+                }
+            }
+        })
+
+        // viewModel.getBooksWithCoroutines()
+        viewModel.getBooksWithCall()
     }
 
     private fun initRecyclerView() {

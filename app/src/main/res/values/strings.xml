@@ -5,6 +5,9 @@
 
     <!-- Books Activity -->
     <string name="books_title">Books</string>
+    <string name="books_error_401">Not Allowed</string>
+    <string name="books_error_400_generic">Untreated error</string>
+    <string name="books_error_500_generic">Fatal error</string>
 
     <!-- Books Details Activity -->
     <string name="book_details_title_label">Title</string>
