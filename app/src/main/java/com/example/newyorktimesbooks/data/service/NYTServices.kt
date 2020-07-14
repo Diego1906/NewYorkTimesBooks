@@ -8,15 +8,16 @@ import retrofit2.http.Query
 
 interface NYTServices {
 
-    @GET("lists.json")
+    // USING COROUTINES
+    /* @GET("lists.json")
     suspend fun getBooks(
         @Query("api-key") apiKey: String = BuildConfig.API_KEY,
         @Query("list") list: String = "hardcover-fiction"
     ): BookBodyResponse
-
+     */
 
     @GET("lists.json")
-    fun getBooksWithCall(
+    fun getBooks(
         @Query("api-key") apiKey: String = BuildConfig.API_KEY,
         @Query("list") list: String = "hardcover-fiction"
     ): Call<BookBodyResponse>

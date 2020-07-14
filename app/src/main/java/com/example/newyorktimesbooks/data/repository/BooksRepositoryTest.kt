@@ -10,14 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BooksRepositoryImpl(private val service: ApiService) : BooksRepository {
+class BooksRepositoryTest(private val service: ApiService) : BooksRepository {
 
-    // USING COROUTINES
-/*
-    override suspend fun getBooks(): BookBodyResponse {
-        return service.getInstance().getBooks()
-    }
-*/
     override fun getBooks(booksResultCallBack: (result: BooksResult) -> Unit) {
         service.getInstance().getBooks().enqueue(object : Callback<BookBodyResponse> {
             override fun onResponse(
@@ -48,4 +42,3 @@ class BooksRepositoryImpl(private val service: ApiService) : BooksRepository {
         })
     }
 }
-

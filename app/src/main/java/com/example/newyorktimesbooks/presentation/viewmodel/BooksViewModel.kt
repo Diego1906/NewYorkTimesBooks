@@ -7,17 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newyorktimesbooks.R
 import com.example.newyorktimesbooks.application.App
-import com.example.newyorktimesbooks.data.mapper.mapToDomain
+import com.example.newyorktimesbooks.data.BooksResult
 import com.example.newyorktimesbooks.data.repository.BooksRepository
-import com.example.newyorktimesbooks.data.response.BookBodyResponse
 import com.example.newyorktimesbooks.domain.Book
-import kotlinx.coroutines.Dispatchers
+import com.example.newyorktimesbooks.util.HttpStatus
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
@@ -34,7 +28,9 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
     val viewFlipper
         get() = _viewFlipper
 
-    fun getBooksWithCoroutines() {
+    /*
+    * USING COROUTINES
+    fun getBooks() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
@@ -59,43 +55,36 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
             }
         }
     }
+     */
 
-    fun getBooksWithCall() {
-        repository.getBooksWithCall().enqueue(object : Callback<BookBodyResponse> {
-            override fun onResponse(
-                call: Call<BookBodyResponse>, response: Response<BookBodyResponse>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        val temp = mutableListOf<Book>()
-                        response.body()?.bookResults?.map { result ->
-                            result.details?.map { detail ->
-                                temp.add(detail.mapToDomain())
-                            }
-                        }
-                        _books.value = temp
-                        setViewFlipper(VIEW_FLIPPER_BOOKS, null)
-                    }
-                    response.code() == NOT_ALLOWED -> {
-                        setViewFlipper(VIEW_FLIPPER_ERROR, R.string.books_error_401)
-                    }
-                    else -> {
-                        setViewFlipper(VIEW_FLIPPER_ERROR, R.string.books_error_400_generic)
-                        Timber.log(
-                            Log.ERROR, App.getContext().getString(R.string.books_error_400_generic)
-                        )
+    fun getBooks() {
+        repository.getBooks { result: BooksResult ->
+            when (result) {
+                is BooksResult.Success -> {
+                    _books.value = result.books
+                    setViewFlipper(child = VIEW_FLIPPER_BOOKS)
+                }
+                is BooksResult.ApiError -> {
+                    if (result.statusCode == HttpStatus.UNAUTHORIZED.value) {
+                        setViewFlipper(resId = R.string.books_error_401)
+                    } else {
+                        setViewFlipper(resId = R.string.books_error_400_generic)
+                        setLog(R.string.books_error_400_generic)
                     }
                 }
+                is BooksResult.ServerError -> {
+                    setViewFlipper(resId = R.string.books_error_500_generic)
+                    setLog(R.string.books_error_500_generic)
+                }
             }
-
-            override fun onFailure(call: Call<BookBodyResponse>, t: Throwable) {
-                setViewFlipper(VIEW_FLIPPER_ERROR, R.string.books_error_500_generic)
-                Timber.log(Log.ERROR, t)
-            }
-        })
+        }
     }
 
-    private fun setViewFlipper(child: Int, @StringRes resId: Int?) {
+    private fun setLog(@StringRes resId: Int) {
+        Timber.log(Log.ERROR, App.getContext().getString(resId))
+    }
+
+    private fun setViewFlipper(child: Int = VIEW_FLIPPER_ERROR, @StringRes resId: Int? = null) {
         _viewFlipper.value = Pair(child, resId)
     }
 
@@ -107,6 +96,5 @@ class BooksViewModel(private val repository: BooksRepository) : ViewModel() {
     companion object {
         private const val VIEW_FLIPPER_BOOKS = 1
         private const val VIEW_FLIPPER_ERROR = 2
-        private const val NOT_ALLOWED = 401
     }
 }

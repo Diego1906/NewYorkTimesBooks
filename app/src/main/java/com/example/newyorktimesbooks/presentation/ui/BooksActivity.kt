@@ -46,9 +46,7 @@ class BooksActivity : BaseActivity() {
                 }
             }
         })
-
-        // viewModel.getBooksWithCoroutines()
-        viewModel.getBooksWithCall()
+        viewModel.getBooks()
     }
 
     private fun initRecyclerView() {
