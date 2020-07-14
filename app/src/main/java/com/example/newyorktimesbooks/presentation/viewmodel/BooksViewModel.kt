@@ -8,9 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.newyorktimesbooks.R
 import com.example.newyorktimesbooks.application.App
 import com.example.newyorktimesbooks.data.mapper.mapToDomain
-import com.example.newyorktimesbooks.data.model.Book
 import com.example.newyorktimesbooks.data.repository.BooksRepository
 import com.example.newyorktimesbooks.data.response.BookBodyResponse
+import com.example.newyorktimesbooks.domain.Book
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch

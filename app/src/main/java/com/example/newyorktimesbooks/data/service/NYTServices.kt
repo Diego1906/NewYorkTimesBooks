@@ -15,7 +15,6 @@ interface NYTServices {
     ): BookBodyResponse
 
 
-
     @GET("lists.json")
     fun getBooksWithCall(
         @Query("api-key") apiKey: String = BuildConfig.API_KEY,

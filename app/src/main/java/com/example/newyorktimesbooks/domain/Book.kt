@@ -1,4 +1,4 @@
-package com.example.newyorktimesbooks.data.model
+package com.example.newyorktimesbooks.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

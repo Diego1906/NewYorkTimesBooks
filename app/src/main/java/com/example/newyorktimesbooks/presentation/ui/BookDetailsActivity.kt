@@ -1,12 +1,12 @@
-package com.example.newyorktimesbooks.presentation.details
+package com.example.newyorktimesbooks.presentation.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import com.example.newyorktimesbooks.R
-import com.example.newyorktimesbooks.data.model.Book
-import com.example.newyorktimesbooks.presentation.base.BaseActivity
+import com.example.newyorktimesbooks.domain.Book
+import com.example.newyorktimesbooks.presentation.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_book_details.*
 
 class BookDetailsActivity : BaseActivity() {

@@ -1,12 +1,11 @@
-package com.example.newyorktimesbooks.presentation.books
+package com.example.newyorktimesbooks.presentation.ui
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.newyorktimesbooks.R
-import com.example.newyorktimesbooks.presentation.base.BaseActivity
-import com.example.newyorktimesbooks.presentation.books.adapter.BooksAdapter
-import com.example.newyorktimesbooks.presentation.books.adapter.OnclickListener
-import com.example.newyorktimesbooks.presentation.details.BookDetailsActivity
+import com.example.newyorktimesbooks.presentation.adapter.BooksAdapter
+import com.example.newyorktimesbooks.presentation.adapter.OnclickListener
+import com.example.newyorktimesbooks.presentation.ui.base.BaseActivity
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
 import com.example.newyorktimesbooks.util.onShowToast
 import kotlinx.android.synthetic.main.activity_books.*

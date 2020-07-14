@@ -1,4 +1,4 @@
-package com.example.newyorktimesbooks.presentation.base
+package com.example.newyorktimesbooks.presentation.ui.base
 
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity

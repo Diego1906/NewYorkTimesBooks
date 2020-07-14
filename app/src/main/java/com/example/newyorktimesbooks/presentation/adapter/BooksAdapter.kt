@@ -1,11 +1,11 @@
-package com.example.newyorktimesbooks.presentation.books.adapter
+package com.example.newyorktimesbooks.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newyorktimesbooks.R
-import com.example.newyorktimesbooks.data.model.Book
+import com.example.newyorktimesbooks.domain.Book
 import kotlinx.android.synthetic.main.item_book.view.*
 
 class BooksAdapter(private val onClickListener: OnclickListener) :
