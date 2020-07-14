@@ -8,7 +8,6 @@ import com.example.newyorktimesbooks.R
 import com.example.newyorktimesbooks.data.model.Book
 import com.example.newyorktimesbooks.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_book_details.*
-import kotlinx.android.synthetic.main.include_toolbar.*
 
 class BookDetailsActivity : BaseActivity() {
 
@@ -18,12 +17,20 @@ class BookDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        setupToolbar(toolbarMain, R.string.book_details_title, true)
+        setupToolbar(R.string.book_details_title, true)
 
+        initBook(savedInstanceState)
+
+        setFields()
+    }
+
+    private fun initBook(savedInstanceState: Bundle?) {
         book = savedInstanceState?.getParcelable(EXTRA_DETAIL) ?: run {
             intent.getParcelableExtra(EXTRA_DETAIL) as Book
         }
+    }
 
+    private fun setFields() {
         txtTitleDetail.text = book.title
         txtTitleDescription.text = book.description
     }
