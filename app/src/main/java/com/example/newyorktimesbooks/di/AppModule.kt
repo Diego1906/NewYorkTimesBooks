@@ -1,9 +1,7 @@
 package com.example.newyorktimesbooks.di
 
-import android.os.Debug
 import com.example.newyorktimesbooks.data.repository.BooksRepository
 import com.example.newyorktimesbooks.data.repository.BooksRepositoryImpl
-import com.example.newyorktimesbooks.data.repository.BooksRepositoryTest
 import com.example.newyorktimesbooks.data.service.ApiService
 import com.example.newyorktimesbooks.data.service.ApiServiceImpl
 import com.example.newyorktimesbooks.presentation.viewmodel.BooksViewModel
@@ -15,10 +13,6 @@ val viewModelModule = module {
 }
 
 val dataModule = module {
-    if (Debug.isDebuggerConnected().not())
-        single<BooksRepository> { BooksRepositoryImpl(service = get()) }
-    else
-        single<BooksRepository> { BooksRepositoryTest(service = get()) }
-
+    single<BooksRepository> { BooksRepositoryImpl(service = get()) }
     single<ApiService> { ApiServiceImpl() }
 }

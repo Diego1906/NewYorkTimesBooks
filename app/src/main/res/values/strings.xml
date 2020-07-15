@@ -5,8 +5,8 @@
 
     <!-- Books Activity -->
     <string name="books_title">Books</string>
-    <string name="books_error_401">Not Allowed</string>
-    <string name="books_error_400_generic">Untreated error</string>
+    <string name="books_error_401">Unauthorized</string>
+    <string name="books_error_400_generic">Bad request</string>
     <string name="books_error_500_generic">Fatal error</string>
 
     <!-- Books Details Activity -->
