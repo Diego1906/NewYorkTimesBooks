@@ -43,10 +43,14 @@ API utilizada [The New York Times Developer Network](https://developer.nytimes.c
   - [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin) é uma pequena biblioteca que fornece funções de ajuda para trabalhar com Mockito em Kotlin
   - [JUnit](https://pt.wikipedia.org/wiki/JUnit) é um framework que facilita a criação e manutenção do código para a automação de testes com apresentação dos resultados.
   
-- Design de Arquitetura e Padrões
+- Design de Arquitetura
   - 
   - [MVVM](https://developer.android.com/jetpack/docs/guide) é o padrão de design de arquitetura de software que a Google indica para os novos desenvolvimento. Os novos componentes de arquitetura já são lançados com suporte a esse tipo de padrão
+  
+- Padrões de Projeto (Design Patterns)
+  - 
   - [Repository](https://proandroiddev.com/the-real-repository-pattern-in-android-efba8662b754) é estratégia para abstrair o acesso aos dados. Ele é composto pelo código em uma aplicação que lida com o armazenamento e a recuperação de dados. [Mais detalhes](https://makingloops.com/why-should-you-use-the-repository-pattern/).
+  - [Dependency injection](https://pt.wikipedia.org/wiki/Inje%C3%A7%C3%A3o_de_depend%C3%AAncia) é um padrão de desenvolvimento de programas de computadores utilizado quando é necessário manter baixo o nível de acoplamento entre diferentes módulos de um sistema.
   
 - Princípios do SOLID utilizados
   - 
